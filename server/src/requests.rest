@@ -1,0 +1,41 @@
+POST http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "username":"amer",
+    "password":"123456"
+}
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username":"amer",
+    "password":"123456"
+}
+
+###
+
+POST http://localhost:5000/auth/refreshToken
+Content-Type: application/json
+
+###
+
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "username":"khaled",
+    "password":"123456",
+    "roles":["Admin"]
+}
+
+###
+
+GET http://localhost:5000/note
+
+
+###
+
+GET http://localhost:5000/note/getNote
