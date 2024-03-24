@@ -102,6 +102,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = () => {
     // Your logout logic here
     setUser(null);
+    saveUser(null);
+
+    // Create an axios Request to the backend
   };
 
   // Refresh user token
