@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export enum TokenExpiration {
-  Access = 5 * 60 * 1000,
+  Access = 60 * 60 * 1000,
   Refresh = 90 * 24 * 60 * 60 * 1000,
 }
 

@@ -9,7 +9,7 @@ const userSchema = new DB(
     githubToken: process.env.GIST_TOKEN!,
     projectName: "mern-auth-concept",
     schemaName: "user",
-    gistId: "57e142646b00b52a8e551eae8e1290ee",
+    gistId: "c0c3fd501b3908ce2ebb98d8c628252f",
     timeStamps: true,
   }
 );

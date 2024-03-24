@@ -43,7 +43,7 @@ const authController = {
       httpOnly: true,
     });
 
-    res.json({ accessToken, refreshToken });
+    res.json({ accessToken, refreshToken, user });
 
     // console.log(req);
   },
@@ -57,7 +57,7 @@ const authController = {
       httpOnly: true,
     });
 
-    res.json({msg:"OK"})
+    res.json({ msg: "OK" });
     // console.log(req);
   },
   // rotate accessToken before it expired
@@ -68,7 +68,7 @@ const authController = {
       jwt.verify(
         authToken.refresh,
         process.env.REFRESH_TOKEN_SECRET!,
-        (err, userToken) => {
+        async (err, userToken: any) => {
           if (err) {
             return res.sendStatus(403);
           }
@@ -83,7 +83,11 @@ const authController = {
             maxAge: TokenExpiration.Refresh,
           });
 
-          res.json({ msg: "Token Refreshed Successfully!" });
+          const user = await userSchema.findFirst({ id: userToken.userId });
+
+          if (!user) return res.status(400).json({ msg: "Invalid token" });
+
+          res.json({ msg: "Token Refreshed Successfully!", user });
         }
       );
     } catch (error) {
@@ -113,7 +117,7 @@ const authController = {
       }
     );
   },
-  getUser: async (req: Request) => {
+  fetchUser: async (req: Request) => {
     const authToken = req.cookies as IToken;
     console.log(authToken.access);
     const userToken = jwt.verify(
